@@ -5,8 +5,10 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class SimpleDelayedHandler implements HttpHandler {
@@ -31,11 +33,12 @@ public class SimpleDelayedHandler implements HttpHandler {
         if (withLock) {
             response = workers.get((int) (id.incrementAndGet() % workersCount)).doJob();
         } else {
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+//            try {
+//                Thread.sleep(200);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+            new BigInteger(500, 10, new Random());
             response = "Ping_" + id.incrementAndGet();
         }
 

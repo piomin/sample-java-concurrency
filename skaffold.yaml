@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: sample-java-concurrency
+build:
+  artifacts:
+  - image: piomin/sample-java-concurrency
+    buildpacks:
+      builder: paketobuildpacks/builder:base
+      buildpacks:
+#        - paketo-buildpacks/java
+        - paketo-buildpacks/graalvm
+        - paketo-buildpacks/java-native-image
+      env:
+        - BP_NATIVE_IMAGE=true
+        - BP_JVM_VERSION=19
+        - BP_JVM_TYPE=JDK
+        - BP_NATIVE_IMAGE_BUILD_ARGUMENTS=--enable-preview
+deploy:
+  kubectl:
+    manifests:
+    - k8s/deployment.yaml
