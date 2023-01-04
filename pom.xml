@@ -49,7 +49,7 @@
                     <configuration>
                         <release>${java.version}</release>
                         <compilerArgs>
-                            --enable-preview
+                            <arg>--enable-preview</arg>
                         </compilerArgs>
                         <source>${java.version}</source>
                         <target>${java.version}</target>

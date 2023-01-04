@@ -6,7 +6,7 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/target: "100"
+        autoscaling.knative.dev/target: "80"
     spec:
       containers:
         - name: sample-java-concurrency
@@ -15,4 +15,46 @@ spec:
             - containerPort: 8080
           env:
             - name: THREAD_TYPE
-              value: standard
+              value: virtual
+            - name: JAVA_TOOL_OPTIONS
+              value: --enable-preview
+#          resources:
+#            limits:
+#              cpu: "500m"
+#            requests:
+#              cpu: "250m"
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: sample-java-concurrency
+#spec:
+#  selector:
+#    matchLabels:
+#      app: sample-java-concurrency
+#  template:
+#    metadata:
+#      labels:
+#        app: sample-java-concurrency
+#    spec:
+#      containers:
+#        - name: sample-java-concurrency
+#          image: piomin/sample-java-concurrency
+#          ports:
+#            - containerPort: 8080
+#          env:
+#            - name: THREAD_TYPE
+#              value: standard
+#            - name: JAVA_TOOL_OPTIONS
+#              value: --enable-preview
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: sample-java-concurrency
+#spec:
+#  type: ClusterIP
+#  selector:
+#    app: sample-java-concurrency
+#  ports:
+#    - port: 8080
+#      targetPort: 8080

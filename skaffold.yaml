@@ -14,8 +14,12 @@ build:
       env:
         - BP_NATIVE_IMAGE=true
         - BP_JVM_VERSION=19
-        - BP_JVM_TYPE=JDK
+#        - BP_JVM_TYPE=JDK
+#        - BP_MAVEN_BUILD_ARGUMENTS=--enable-preview
+#        - JAVA_TOOL_OPTIONS=--enable-preview
         - BP_NATIVE_IMAGE_BUILD_ARGUMENTS=--enable-preview
+  local:
+    push: true
 deploy:
   kubectl:
     manifests:

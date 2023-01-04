@@ -21,7 +21,7 @@ public class MainApp {
         if (System.getenv("THREAD_TYPE").equals("virtual"))
             httpServer.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
         else
-            httpServer.setExecutor(Executors.newFixedThreadPool(200));
+            httpServer.setExecutor(Executors.newFixedThreadPool(100));
         httpServer.start();
         LOG.log(Level.INFO, "Server Started (port->8080, cpus->{0})", new Object[] {cpus});
     }
