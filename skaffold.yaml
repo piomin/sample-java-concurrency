@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2beta29
+apiVersion: skaffold/v4beta5
 kind: Config
 metadata:
   name: sample-java-concurrency
@@ -21,6 +21,7 @@ build:
   local:
     push: true
 deploy:
-  kubectl:
-    manifests:
+  kubectl: {}
+manifests:
+  rawYaml:
     - k8s/deployment.yaml
