@@ -2,7 +2,6 @@ package pl.piomin.model;
 
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
 
 public record CustomTask(long startTime, String msg, long id) implements Delayed {
 
